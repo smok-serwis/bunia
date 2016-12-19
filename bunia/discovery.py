@@ -47,7 +47,7 @@ def from_module(module):
     # get all classes
     commands = []
     for name, member in inspect.getmembers(module):
-        if inspect.isclass(member) and issubclass(member, Command):
+        if inspect.isclass(member) and issubclass(member, Command) and (member is not Command):
             commands.append(member)
 
     # get submodules

@@ -33,7 +33,10 @@ class ConsoleOutput(Output):
         if form == 'text':
             return content
         elif form == 'html':
-            return '<pre>' + content + '</pre>'
+            if len(content) == 0:
+                return '<em> empty! </em>'
+            else:
+                return '<pre>' + content + '</pre>'
         else:
             raise ValueError('Unsupported form')
 
