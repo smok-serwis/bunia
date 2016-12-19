@@ -1,5 +1,7 @@
 # bunia
 
+[![PyPI version](https://badge.fury.io/py/bunia.svg)](https://badge.fury.io/py/bunia)
+
 **bunia** is a library, that allows you to write multi-interface commands.
 
 This means that the same command can be launched using eg. console, Web GUI, e-mail, SMS, or any other provider you might wish.
