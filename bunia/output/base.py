@@ -18,4 +18,3 @@ class Output(object):
         :raises ValueError: form not supported
         :return: depends on form. unicode for text and html
         """
-

@@ -6,12 +6,35 @@ from bunia.api import Command
 
 
 def from_name(name):
+    """
+    Return a command by it's class name.
+
+    name is either some.module.path:ClassName if you need to specify it explicitly,
+    or some.module.path if .path contains a variable COMMAND, which is that class
+    :param name: name to load
+    :return: Command class
+    """
     if ':' in name:
         module, clsname = name.split(':', 2)
 
         return importlib.import_module(module).__dict__[clsname]
     else:
         return importlib.import_module(name).COMMAND
+
+
+def pick_from_module(module, name):
+    """
+    Walk a module hierarchy. Pick a command with NAME equal to target.
+
+    :param module: module to examine
+    :param name: Command name
+    :return: Command class
+    :raise NameError: command not found
+    """
+    for command in from_module(module):
+        if command.NAME == name:
+            return command
+    raise NameError('command not found')
 
 
 def from_module(module):

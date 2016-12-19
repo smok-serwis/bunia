@@ -6,7 +6,6 @@ Helper functions :)
 """
 
 
-
 def _outc(output):
     a = []
     if output.name is not None:
@@ -16,7 +15,6 @@ def _outc(output):
     a.append(output.to('html'))
     a.append(u'</p>')
     return a
-
 
 def format_outputs(outputs):
     """Output a list of Outputs as HTML"""
