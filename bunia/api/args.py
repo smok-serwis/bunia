@@ -3,17 +3,15 @@ class Argument(object):
     Definition of an argument
     """
 
-    def __init__(self, username, name=None, default=None, required=True, description=u''):
+    def __init__(self, name, default=None, required=True, description=u''):
         """
-        :param username: Name displayed to user
-        :param name: Name of argument provided to run()
+        :param username: Name of argument. This must match run() signature
         :param default: default value
         :param required: Is it optional?
         :param description: description
         """
         self.description = description
-        self.name = name or username
-        self.username = username
+        self.name = name
         self.default = default
         self.required = required
 
@@ -28,13 +26,25 @@ class Argument(object):
         return val
 
 
-class DeviceArgument(object):
-    """
-    Argument is a valid master controller Device ID
-    """
+class ValuelessArgument(Argument):
+    """Base class for arguments, whose value will either be None or the default"""
+    def __init__(self, name, default=True, description=u''):
+        Argument.__init__(self, name, default=default, required=False, description=description)
+
+class Integer(Argument):
+    """Argument is an integer"""
     def clean(self, val):
-        from sai.devices import Device
-        d = Device(val)
-        if not d.exists():
-            raise ValueError('Device does not exist')
-        return d
+        return int(val)
+
+
+class Float(Argument):
+    """Argument is a float"""
+    def clean(self, val):
+        return float(val)
+
+
+class Flag(ValuelessArgument):
+    """This argument has value of False by default. Seeing it in command"""
+
+    def clean(self, val):
+        return val is not None

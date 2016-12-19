@@ -2,6 +2,7 @@
 import sys
 import argparse
 from bunia.runner.base import Runner
+from bunia.api import ValuelessArgument
 from bunia.output import ConsoleOutput
 from bunia.discovery import from_name
 import io
@@ -40,18 +41,36 @@ class ConsoleRunner(Runner):
 
         for argument in cmd.ARGUMENTS:
             argument_by_name[argument.name] = argument
-            parser.add_argument(argument.name,
-                                metavar=argument.username,
-                                nargs=1,
-                                type=str,
-                                default=argument.default,
-                                help=argument.description)
+
+            # check. Is it optional? takes an argument?
+            takes_argument = not isinstance(argument, ValuelessArgument)
+            optional = not argument.required
+
+            if isinstance(argument, ValuelessArgument):     #flag
+                parser.add_argument(('--' if optional else '') + argument.name,
+                                    action='store_const',
+                                    const=argument.default,
+                                    default=None,
+                                    help=argument.description)
+            else:       # takes an argument
+                parser.add_argument(('--' if optional else '') + argument.name,
+                                    nargs=1,
+                                    default=argument.default,
+                                    type=str,
+                                    help=argument.description,
+                                    metavar=argument.name.upper() if takes_argument else None
+                                    )
 
         params = {}
 
         for argument_name, value in vars(parser.parse_args(args)).iteritems():
             try:
-                params[argument_name] = argument_by_name[argument_name].clean(value[0])
+                v = value[0]
+            except TypeError:
+                v = value
+
+            try:
+                params[argument_name] = argument_by_name[argument_name].clean(v)
             except ValueError as e:
                 raise ValueError('Invalid value of argument %s: %s' % (argument_name, e.message))
 
@@ -72,19 +91,23 @@ class ConsoleRunner(Runner):
             self.stdout.write(console.to('text').decode('utf8'))
 
 
-if __name__ == '__main__':
+def _run_from_console(cmd, args):
     # First argument is name of the module to run
+    cr = ConsoleRunner()
+    cr.run(cmd, args)
+    sys.stdout.write(cr.stdout.getvalue())
+    cr.stdout.close()
+
+
+if __name__ == '__main__':
     if len(sys.argv) < 2:
         print(u'''usage: python -m bunia.runner.console <command name> <arguments>
 
-Run a command using ConsoleRunner
+    Run a command using ConsoleRunner
 
-command name is in form name.of.module:CommandClass to set class explicitly
-or name.of.module, if it contains a module global variable COMMAND''')
+    command name is in form name.of.module:CommandClass to set class explicitly
+    or name.of.module, if it contains a module global variable COMMAND''')
         sys.exit(1)
 
     cmd = from_name(sys.argv[1])()
-    cr = ConsoleRunner()
-    cr.run(cmd, sys.argv[2:])
-    sys.stdout.write(cr.stdout.getvalue())
-    cr.stdout.close()
+    _run_from_console(cmd, sys.argv[2:])
