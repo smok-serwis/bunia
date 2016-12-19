@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name='bunia',
-      version='0.2',
+      version='0.3',
       description=u'Write commands that use multiple interfaes',
       author=u'Piotr Maślanka',
       author_email='piotrm@smok.co',
