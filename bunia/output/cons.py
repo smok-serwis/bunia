@@ -6,14 +6,23 @@ class ConsoleOutput(Output):
     """
     UTF-8 output.
     """
-    def __init__(self, name=None, eol=u'\n', stdout=None):
+    def __init__(self, name=None, eol=u'\n', stdout=None, sink=False):
         Output.__init__(self, name)
         self.io = stdout or io.StringIO()
         self.eol = unicode(eol)
+        self.sink = sink
+
+    def sink(self, sink=True):
+        """
+        Make this console ignore all input.
+        """
+        self.sink = sink
 
     def text(self, message, *args):
         """Write a message. It will be subject to processing with
         message % args. Appends an end of line"""
+        if self.sink:
+            return
         self.io.write((unicode(message) % args))
         self.io.write(self.eol)
 
