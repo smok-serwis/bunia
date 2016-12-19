@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name='bunia',
-      version='0.6',
+      version='0.0a',
       description=u'Write commands that use multiple interfaes',
       author=u'DMS Serwis s.c.',
       author_email='piotrm@smok.co',
@@ -21,4 +21,4 @@ setup(name='bunia',
 it from shell, Web, SMS, etc.
 
 A device-independent output and input is presented.'''
-     )
+)

@@ -7,9 +7,9 @@ class ConsoleOutput(Output):
     """
     UTF-8 output.
     """
-    def __init__(self, name=None, eol=u'\n'):
+    def __init__(self, name=None, eol=u'\n', stdout=None):
         Output.__init__(self, name)
-        self.io = io.StringIO()
+        self.io = stdout or io.StringIO()
         self.eol = unicode(eol)
 
     def text(self, message, *args):

@@ -1,7 +1,9 @@
+#!/usr/bin/env python
 import sys
 import argparse
-from .runner import Runner
-from ..outputs import ConsoleOutput
+from bunia.runner.base import Runner
+from bunia.output import ConsoleOutput
+from bunia.discovery import from_name
 import io
 
 class ConsoleRunner(Runner):
@@ -26,6 +28,7 @@ class ConsoleRunner(Runner):
 
         :param cmd: Command instance to run
         :param args: list of str, command-line arguments
+        :param stdout: optional file-like object to write output to
         :raise ValueError: argument was invalid
         """
         if stdout is None:
@@ -71,13 +74,17 @@ class ConsoleRunner(Runner):
 
 if __name__ == '__main__':
     # First argument is name of the module to run
-    if len(sys.argv) < 1:
-        print('Expected command to run.\nCan be in form name.of.module:CommandClass or name.of.module, if command is available at module-level variable COMMAND')
+    if len(sys.argv) < 2:
+        print(u'''usage: python -m bunia.runner.console <command name> <arguments>
 
-    from bunia.discovery import from_name
+Run a command using ConsoleRunner
+
+command name is in form name.of.module:CommandClass to set class explicitly
+or name.of.module, if it contains a module global variable COMMAND''')
+        sys.exit(1)
 
     cmd = from_name(sys.argv[1])()
     cr = ConsoleRunner()
     cr.run(cmd, sys.argv[2:])
-    print(cr.stdout.getvalue())
+    sys.stdout.write(cr.stdout.getvalue())
     cr.stdout.close()
