@@ -3,12 +3,12 @@
 from distutils.core import setup
 
 setup(name='bunia',
-      version='0.1',
+      version='0.2',
       description=u'Write commands that use multiple interfaes',
       author=u'Piotr Maślanka',
       author_email='piotrm@smok.co',
       url='https://github.com/smok-serwis/bunia',
-      download_url='https://github.com/smok-serwis/coolamqp/archive/bunia.zip',
+      download_url='https://github.com/smok-serwis/bunia/archive/master.zip',
       keywords=['arguments', 'argparse', 'html', 'console'],
       packages=['bunia',
                 'bunia.runner',
