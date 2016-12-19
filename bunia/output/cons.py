@@ -1,7 +1,6 @@
 import io
 
-from .base import Output
-
+from bunia.output.base import Output
 
 class ConsoleOutput(Output):
     """

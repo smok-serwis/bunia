@@ -3,9 +3,9 @@
 from distutils.core import setup
 
 setup(name='bunia',
-      version='0.0a',
+      version='0.1',
       description=u'Write commands that use multiple interfaes',
-      author=u'DMS Serwis s.c.',
+      author=u'Piotr Maślanka',
       author_email='piotrm@smok.co',
       url='https://github.com/smok-serwis/bunia',
       download_url='https://github.com/smok-serwis/coolamqp/archive/bunia.zip',
@@ -13,8 +13,7 @@ setup(name='bunia',
       packages=['bunia',
                 'bunia.runner',
                 'bunia.api',
-                'bunia.discovery',
-                'bunia.outputs',
+                'bunia.output',
                 ],
       license='MIT License',
       long_description=u'''This is an interface for writing commands that can use multiple interfaces, ie. you can launch
