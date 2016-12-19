@@ -32,14 +32,32 @@ class ValuelessArgument(Argument):
         Argument.__init__(self, name, default=default, required=False, description=description)
 
 
-class RestrictedChoiceArgument(Argument):
-    """Base class for arguments that provides a list of values to choose from"""
+class ListedArgument(Argument):
+    """Base class for arguments that additionally provides a list of values to choose from"""
 
     def get_values(self):
         """Return applicable values
         :return: iterable of tuple (value, value description::unicode)
         """
         return []
+
+
+class ChoiceArgument(ListedArgument):
+    """You can pick only values from the list"""
+    def __init__(self, name, choices, *args, **kwargs):
+        """
+        :param choices: list of tuple (value, human-readable label)
+        """
+        ListedArgument.__init__(self, name, *args, **kwargs)
+        self.choices = choices
+
+    def get_values(self):
+        return self.choices
+
+    def clean(self, val):
+        if val not in (v for v, lab in self.choices):
+            raise ValueError(val)
+        return val
 
 
 class Integer(Argument):
