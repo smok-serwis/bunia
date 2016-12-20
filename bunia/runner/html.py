@@ -26,16 +26,16 @@ class HTMLOutputBuilder(object):
 
     def default_output(self, output):
         """Default (no-name) output is being displayed"""
-        self.out.write(_output_to_html(output))
-        self.out.write('<br>')
+        self.out.write(u''.join(_output_to_html(output)))
+        self.out.write(u'<br>')
 
     def named_output(self, output):
         """Named output is being displayed"""
-        self.out.write('<h3>')
+        self.out.write(u'<h3>')
         self.out.write(output.name)
-        self.out.write('</h3>')
+        self.out.write(u'</h3>')
         self.out.write(_output_to_html(output))
-        self.out.write('<br>')
+        self.out.write(u'<br>')
 
     def to_html(self):
         q = self.out.getvalue()
