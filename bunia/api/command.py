@@ -17,6 +17,13 @@ class Command(object):
         :param runner: Runner instance - pertaining to where are you being ran
         """
 
+    def __call__(self, *args, **kwargs):
+        """Execute run() using InlineRunner"""
+        from bunia.runner import InlineRunner
+
+        ir = InlineRunner()
+        return ir.run(self, *args, **kwargs)
+
     def run_using_main(self, args=None):
         """
         To be called in if __name__ == '__main__' sections.
