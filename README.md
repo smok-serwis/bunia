@@ -4,6 +4,7 @@
 [![Build Status](https://travis-ci.org/smok-serwis/bunia.svg?branch=develop)](https://travis-ci.org/smok-serwis/bunia)
 [![Code Climate](https://codeclimate.com/github/smok-serwis/bunia/badges/gpa.svg)](https://codeclimate.com/github/smok-serwis/bunia)
 [![Test Coverage](https://codeclimate.com/github/smok-serwis/bunia/badges/coverage.svg)](https://codeclimate.com/github/smok-serwis/bunia/coverage)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 
 **bunia** is a library, that allows you to write multi-interface commands.
 
