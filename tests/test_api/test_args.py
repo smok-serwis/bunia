@@ -1,6 +1,6 @@
 import unittest
 
-from bunia.api import Argument, Integer, Float
+from bunia.api import Argument, Integer, Float, Flag
 
 class TestArguments(unittest.TestCase):
 
@@ -28,3 +28,9 @@ class TestArguments(unittest.TestCase):
         self.assertEquals(2, arg.clean('2'))
         self.assertEquals(2.14, arg.clean('2.14'))
         self.assertRaises(ValueError, lambda: arg.clean('weer'))
+
+    def test_flag(self):
+        arg = Flag('test')
+        self.assertEquals(True, arg.clean(True))
+        self.assertEquals(False, arg.clean(None))
+
