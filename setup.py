@@ -10,6 +10,7 @@ setup(name='bunia',
       url='https://github.com/smok-serwis/bunia',
       download_url='https://github.com/smok-serwis/bunia/archive/master.zip',
       keywords=['arguments', 'argparse', 'html', 'console'],
+      platforms=['any'],
       packages=['bunia',
                 'bunia.runner',
                 'bunia.api',
@@ -19,5 +20,12 @@ setup(name='bunia',
       long_description=u'''This is an interface for writing commands that can use multiple interfaces, ie. you can launch
 it from shell, Web, SMS, etc.
 
-A device-independent output and input is presented.'''
+A device-independent output and input is presented.''',
+      classifiers=[
+          'Programming Language :: Python',
+          'Programming Language :: Python :: 2.7',
+          'Programming Language :: Python :: Implementation :: CPython',
+          'Programming Language :: Python :: Implementation :: PyPy',
+          'Operating System :: OS Independent'
+      ]
 )
