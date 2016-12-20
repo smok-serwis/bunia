@@ -1,6 +1,7 @@
 # bunia
 
 [![PyPI version](https://badge.fury.io/py/bunia.svg)](https://badge.fury.io/py/bunia)
+[![Build Status](https://travis-ci.org/smok-serwis/bunia.svg?branch=develop)](https://travis-ci.org/smok-serwis/bunia)
 
 **bunia** is a library, that allows you to write multi-interface commands.
 
