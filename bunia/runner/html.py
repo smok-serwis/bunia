@@ -51,8 +51,8 @@ class HTMLRunner(Runner):
         self.outputs = []
         self.builder = output_builder()
 
-    def new_console(self, name=None):
-        con = ConsoleOutput(name)
+    def new_console(self, name=None, sink=False):
+        con = ConsoleOutput(name, sink=sink)
         self.outputs.append(con)
         return con
 

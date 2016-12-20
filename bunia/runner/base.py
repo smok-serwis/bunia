@@ -1,6 +1,6 @@
 class Runner(object):
 
-    def new_console(self, name=None):
+    def new_console(self, name=None, sink=False):
         """Return a new ConsoleOutput"""
 
     def new_table(self, name=None, headers=[]):
