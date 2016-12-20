@@ -111,7 +111,7 @@ def arguments_from_post(command, post):
     :return: kwargs for command
     :raise ValueError: argument validation failed
     """
-    v = {}
+    out = {}
 
     for argument in command.ARGUMENTS:
         try:
@@ -131,8 +131,8 @@ def arguments_from_post(command, post):
                     v = argument.default
 
         try:
-            v[argument.name] = argument.clean(v)
+            out[argument.name] = argument.clean(v)
         except ValueError as e:
             raise ValueError('Argument %s invalid: %s' % (argument.name, e.message))
 
-    return v
+    return out
