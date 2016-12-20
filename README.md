@@ -5,6 +5,8 @@
 [![Code Climate](https://codeclimate.com/github/smok-serwis/bunia/badges/gpa.svg)](https://codeclimate.com/github/smok-serwis/bunia)
 [![Test Coverage](https://codeclimate.com/github/smok-serwis/bunia/badges/coverage.svg)](https://codeclimate.com/github/smok-serwis/bunia/coverage)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
+[![PyPI](https://img.shields.io/pypi/pyversions/bunia.svg)]()
+[![PyPI](https://img.shields.io/pypi/implementation/bunia.svg)]()
 
 **bunia** is a library, that allows you to write multi-interface commands.
 
