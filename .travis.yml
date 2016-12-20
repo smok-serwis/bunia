@@ -3,6 +3,6 @@ python:
  - "2.7"
 cache: pip
 script:
- - nosetests
+ - nosetests --with-coverage
 after_sucess:
-  - CODECLIMATE_REPO_TOKEN= codeclimate-test-reporter
+  - codeclimate-test-reporter
