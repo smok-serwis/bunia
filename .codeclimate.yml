@@ -1,0 +1,8 @@
+engines:
+  brakeman:
+    enabled: true
+exclude_paths:
+- examples/**
+ratings:
+  paths:
+    - bunia/**
