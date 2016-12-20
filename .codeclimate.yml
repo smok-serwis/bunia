@@ -1,6 +1,16 @@
 engines:
   brakeman:
     enabled: true
+  duplication:
+    enabled: true
+  fixme:
+    enabled: true
+  markdownlint:
+    enabled: true
+  pep8:
+    enabled: true
+  radon:
+    enabled: true
 exclude_paths:
 - examples/**
 ratings:
