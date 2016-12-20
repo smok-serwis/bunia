@@ -1,1 +1,1 @@
-codeclimate-test-reporter
+

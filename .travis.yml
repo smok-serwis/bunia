@@ -2,7 +2,13 @@ language: python
 python:
  - "2.7"
 cache: pip
+install:
+ - pip install coverage
+ - pip install codeclimate-test-reporter
 script:
  - nosetests --with-coverage
 after_sucess:
   - codeclimate-test-reporter
+addons:
+  code_climate:
+    repo_token: c9bb4362e87117de1c8e4ed83afad7b4068193d726e324a6280115c6dcde882b
