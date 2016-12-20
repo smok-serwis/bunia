@@ -32,8 +32,7 @@ class ConsoleRunner(Runner):
         :param stdout: optional file-like object to write output to
         :raise ValueError: argument was invalid
         """
-        if stdout is None:
-            self.stdout = io.StringIO()
+        self.stdout = stdout or io.StringIO()
 
         parser = argparse.ArgumentParser(description=cmd.DESCRIPTION)
 
