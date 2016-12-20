@@ -1,8 +1,10 @@
 engines:
-  brakeman:
-    enabled: true
   duplication:
     enabled: true
+    config:
+      languages:
+        python:
+
   fixme:
     enabled: true
   markdownlint:
@@ -15,4 +17,6 @@ exclude_paths:
 - examples/**
 ratings:
   paths:
-    - bunia/**
+  - bunia/**
+  - tests/**
+
