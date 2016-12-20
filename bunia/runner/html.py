@@ -61,6 +61,8 @@ class HTMLRunner(Runner):
 
     def get_html(self):
         """Return HTML generated with output_builder"""
+        self.builder.start()
+
         for output in self.outputs:
             if output.name is None:
                 default = output
@@ -85,12 +87,9 @@ class HTMLRunner(Runner):
 
         :param cmd: Command instance to run
         :param http_dict: dictionary of variables
-        :raise ValueError: argument was invalid
+        :raise ValueError: argument was invalid or internal failure
         """
-
-        cmd.run(self, **arguments_from_post(self, http_dict))
-
-        self.builder.start()
+        cmd.run(self, **arguments_from_post(cmd, http_dict))
 
 
 def _output_to_html(output):
