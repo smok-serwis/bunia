@@ -4,3 +4,5 @@ python:
 cache: pip
 script:
  - nosetests
+after_sucess:
+  - CODECLIMATE_REPO_TOKEN= codeclimate-test-reporter
