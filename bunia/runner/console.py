@@ -20,9 +20,6 @@ class ConsoleRunner(Runner):
         self.consoles.append(con)
         return con
 
-    def new_table(self, name=None, headers=[]):
-        raise NotImplementedError
-
     def run(self, cmd, args, stdout=None):
         """
         Run a command.

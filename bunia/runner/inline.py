@@ -21,9 +21,6 @@ class InlineRunner(Runner):
     def new_console(self, name=None, sink=False):
         return ConsoleOutput(sink=True)
 
-    def new_table(self, name=None, headers=[]):
-        raise NotImplementedError
-
     def run(self, cmd, *args, **kwargs):
         """
         Run a command.

@@ -56,9 +56,6 @@ class HTMLRunner(Runner):
         self.outputs.append(con)
         return con
 
-    def new_table(self, name=None, headers=[]):
-        raise NotImplementedError
-
     def get_html(self):
         """Return HTML generated with output_builder"""
         self.builder.start()
