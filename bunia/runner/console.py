@@ -104,7 +104,7 @@ def _run_from_console(cmd, args):
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print(u'''usage: python -m bunia.runner.console <command name> <arguments>
+        print('''usage: python -m bunia.runner.console <command name> <arguments>
 
     Run a command using ConsoleRunner
 

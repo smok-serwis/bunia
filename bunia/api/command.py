@@ -8,7 +8,7 @@ class Command(object):
     """
 
     NAME = 'command'
-    DESCRIPTION = u'Does nothing.'
+    DESCRIPTION = 'Does nothing.'
     ARGUMENTS = [] # list of Argument instances
 
     def run(self, runner, **kwargs):

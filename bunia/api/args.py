@@ -3,7 +3,7 @@ class Argument(object):
     Definition of an argument
     """
 
-    def __init__(self, name, default=None, required=True, description=u''):
+    def __init__(self, name, default=None, required=True, description=''):
         """
         :param username: Name of argument. This must match run() signature
         :param default: default value
@@ -28,7 +28,7 @@ class Argument(object):
 
 class ValuelessArgument(Argument):
     """Base class for arguments, whose value will either be None or the default"""
-    def __init__(self, name, default=True, description=u''):
+    def __init__(self, name, default=True, description=''):
         Argument.__init__(self, name, default=default, required=False, description=description)
 
 

@@ -27,16 +27,16 @@ class HTMLOutputBuilder(object):
 
     def default_output(self, output):
         """Default (no-name) output is being displayed"""
-        self.out.write(u''.join(_output_to_html(output)))
-        self.out.write(u'<br>')
+        self.out.write(six.text_type(''.join(_output_to_html(output))))
+        self.out.write(six.text_type('<br>'))
 
     def named_output(self, output):
         """Named output is being displayed"""
-        self.out.write(u'<h3>')
+        self.out.write(six.text_type('<h3>'))
         self.out.write(six.text_type(output.name))
-        self.out.write(u'</h3>')
-        self.out.write(u''.join(_output_to_html(output)))
-        self.out.write(u'<br>')
+        self.out.write(six.text_type('</h3>'))
+        self.out.write(six.text_type(''.join(_output_to_html(output))))
+        self.out.write(six.text_type('<br>'))
 
     def to_html(self):
         q = self.out.getvalue()
@@ -94,11 +94,11 @@ class HTMLRunner(Runner):
 def _output_to_html(output):
     a = []
     if output.name is not None:
-        a.append(u'<h1>%s</h1>' % (output.name, ))
+        a.append(six.text_type('<h1>%s</h1>' % (output.name, )))
 
-    a.append(u'<p>')
+    a.append(six.text_type('<p>'))
     a.append(output.to('html'))
-    a.append(u'</p>')
+    a.append(six.text_type('</p>'))
     return a
 
 def arguments_from_post(command, post):

@@ -10,7 +10,7 @@ class ConsoleOutput(Output):
     You can silence and unsilence it by setting the .sink property to True/False.
     True silences output.
     """
-    def __init__(self, name=None, eol=u'\n', stdout=None, sink=False):
+    def __init__(self, name=None, eol='\n', stdout=None, sink=False):
         Output.__init__(self, name)
         self.io = stdout or io.StringIO()
         self.eol = six.text_type(eol)
