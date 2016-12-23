@@ -1,7 +1,6 @@
 import importlib
 import inspect
 import pkgutil
-import six
 
 from bunia.api import Command
 
@@ -14,13 +13,17 @@ def from_name(name):
     or some.module.path if .path contains a variable COMMAND, which is that class
     :param name: name to load
     :return: Command class
+    :raise NameError: not found
     """
-    if ':' in name:
-        module, clsname = name.split(':', 2)
+    try:
+        if ':' in name:
+            module, clsname = name.split(':', 2)
 
-        return importlib.import_module(module).__dict__[clsname]
-    else:
-        return importlib.import_module(name).COMMAND
+            return importlib.import_module(module).__dict__[clsname]
+        else:
+            return importlib.import_module(name).COMMAND
+    except (KeyError, ImportError):
+        raise NameError(name)
 
 
 def pick_from_module(module, name):
