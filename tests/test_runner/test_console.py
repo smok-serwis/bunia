@@ -22,6 +22,10 @@ class TestConsole(unittest.TestCase):
         cr.run(AddTwoNumbers(), ['2', '3'], stdout=out)
         self.assertTrue('2+3=5' in out.getvalue())
 
+    def test_badargs(self):
+        cr = ConsoleRunner()
+        self.assertRaises(ValueError, lambda: cr.run(AddTwoNumbers(), ['lol', 'wut']))
+
     def test_console_clusterfuck(self):
         out = io.StringIO()
         cr = ConsoleRunner()

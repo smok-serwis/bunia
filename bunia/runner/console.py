@@ -47,33 +47,35 @@ class ConsoleRunner(Runner):
             takes_argument = not isinstance(argument, ValuelessArgument)
             optional = not argument.required
 
-            if isinstance(argument, ValuelessArgument):     #flag
+            if isinstance(argument, ValuelessArgument):         # flag
                 parser.add_argument(('--' if optional else '') + argument.name,
                                     action='store_const',
                                     const=argument.default,
                                     default=None,
                                     help=argument.description)
             else:       # takes an argument
+                metavar = argument.name.upper() if takes_argument else None
                 parser.add_argument(('--' if optional else '') + argument.name,
                                     nargs=1,
                                     default=argument.default,
                                     type=str,
                                     help=argument.description,
-                                    metavar=argument.name.upper() if takes_argument else None
+                                    metavar=metavar
                                     )
 
         params = {}
 
-        for argument_name, value in six.iteritems(vars(parser.parse_args(args))):
+        for argname, value in six.iteritems(vars(parser.parse_args(args))):
             try:
                 v = value[0]
             except TypeError:
                 v = value
 
             try:
-                params[argument_name] = argument_by_name[argument_name].clean(v)
+                params[argname] = argument_by_name[argname].clean(v)
             except ValueError as e:
-                raise ValueError('Invalid value of argument %s: %s' % (argument_name, e.message))
+                errmsg = e.args[0] if six.PY3 else e.message
+                raise ValueError('Invalid value of argument %s: %s' % (argname, errmsg))
 
         cmd.run(self, **params)
 
