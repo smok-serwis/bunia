@@ -6,6 +6,7 @@ from bunia.api import ValuelessArgument
 from bunia.output import ConsoleOutput
 from bunia.discovery import from_name
 import io
+import six
 
 
 class HTMLOutputBuilder(object):
@@ -32,7 +33,7 @@ class HTMLOutputBuilder(object):
     def named_output(self, output):
         """Named output is being displayed"""
         self.out.write(u'<h3>')
-        self.out.write(output.name)
+        self.out.write(six.text_type(output.name))
         self.out.write(u'</h3>')
         self.out.write(u''.join(_output_to_html(output)))
         self.out.write(u'<br>')
@@ -41,6 +42,7 @@ class HTMLOutputBuilder(object):
         q = self.out.getvalue()
         self.out.close()
         return q
+
 
 class HTMLRunner(Runner):
     """

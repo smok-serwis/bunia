@@ -86,8 +86,8 @@ class ConsoleRunner(Runner):
                 first = True
 
             if console.name is not None:
-                self.stdout.write(console.name)
-                self.stdout.write('----------------')
+                self.stdout.write(six.text_type(console.name))
+                self.stdout.write(six.text_type('----------------'))
 
             self.stdout.write(console.to('text'))
 

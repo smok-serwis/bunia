@@ -4,8 +4,8 @@ from setuptools import setup
 
 setup(name='bunia',
       version='0.6',
-      description=u'Write commands that use multiple interfaes',
-      author=u'Piotr Maślanka',
+      description='Write commands that use multiple interfaes',
+      author='DMS Serwis s.c.',
       author_email='piotrm@smok.co',
       url='https://github.com/smok-serwis/bunia',
       download_url='https://github.com/smok-serwis/bunia/archive/master.zip',
@@ -20,7 +20,7 @@ setup(name='bunia',
           'six'
       ],
       license='MIT License',
-      long_description=u'''This is an interface for writing commands that can use multiple interfaces, ie. you can launch
+      long_description='''This is an interface for writing commands that can use multiple interfaces, ie. you can launch
 it from shell, Web, SMS, etc.
 
 A device-independent output and input is presented.''',
