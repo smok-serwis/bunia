@@ -1,6 +1,7 @@
 # coding=UTF-8
 from __future__ import absolute_import, division, print_function
 import unittest
+from threading import Lock, Thread
 import io
 
 
@@ -20,3 +21,35 @@ class TestConsole(unittest.TestCase):
         cr = ConsoleRunner()
         cr.run(AddTwoNumbers(), ['2', '3'], stdout=out)
         self.assertTrue('2+3=5' in out.getvalue())
+
+    def test_stdout_passthru(self):
+        lock = Lock()
+        lock.acquire()
+
+        im_here = Lock()
+        im_here.acquire()
+
+        class PassCmd(Command):
+            def run(self, runner):
+                con = runner.new_console()
+                con.text('hello')
+                im_here.release()
+                lock.acquire()
+                con.text('world')
+
+        out = io.StringIO()
+
+        class Runner(Thread):
+            def run(self):
+                ConsoleRunner().run(PassCmd(), [], stdout=out)
+
+        r = Runner()
+        r.start()
+        im_here.acquire()
+        v = out.getvalue()
+        self.assertTrue('hello' in v)
+        self.assertFalse('world' in v)
+        lock.release()
+        r.join()    # wait for command completion
+        v += out.getvalue()
+        self.assertTrue('world' in v)

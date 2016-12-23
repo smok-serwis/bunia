@@ -18,6 +18,9 @@ class ConsoleRunner(Runner):
         self.consoles = []
 
     def new_console(self, name=None):
+        if name is None:
+            return ConsoleOutput(stdout=self.stdout)
+
         con = ConsoleOutput(name)
         self.consoles.append(con)
         return con

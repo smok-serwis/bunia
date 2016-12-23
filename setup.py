@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # coding=UTF-8
-from distutils.core import setup
+from setuptools import setup
 
 setup(name='bunia',
-      version='0.5',
+      version='0.6',
       description=u'Write commands that use multiple interfaes',
       author=u'Piotr Maślanka',
       author_email='piotrm@smok.co',
@@ -16,6 +16,9 @@ setup(name='bunia',
                 'bunia.api',
                 'bunia.output',
                 ],
+      requires=[
+          'six'
+      ],
       license='MIT License',
       long_description=u'''This is an interface for writing commands that can use multiple interfaces, ie. you can launch
 it from shell, Web, SMS, etc.
