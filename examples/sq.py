@@ -5,10 +5,10 @@ from bunia.api import Command, Argument, Flag, Integer, ChoiceArgument
 
 class AddTwo(Command):
     NAME = 'add_two'
-    DESCRIPTION = u'Squares an integer. Or something else'
+    DESCRIPTION = 'Squares an integer. Or something else'
     ARGUMENTS=[
-        Integer('n', description=u'Number to square'),
-        Flag('sqrt', description=u'Do square root instead'),
+        Integer('n', description='Number to square'),
+        Flag('sqrt', description='Do square root instead'),
         ChoiceArgument('wtf', [('a', 'A'), ('b', 'B')])
     ]
 

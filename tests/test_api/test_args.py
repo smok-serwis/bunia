@@ -5,10 +5,10 @@ from bunia.api import Argument, Integer, Float, Flag, ChoiceArgument
 class TestArguments(unittest.TestCase):
 
     def test_base(self):
-        arg = Argument('test', description=u'desc', required=False, default='wtf')
+        arg = Argument('test', description='desc', required=False, default='wtf')
 
         self.assertEquals(arg.name, 'test')
-        self.assertEquals(arg.description, u'desc')
+        self.assertEquals(arg.description, 'desc')
         self.assertEquals(arg.required, False)
         self.assertEquals(arg.default, 'wtf')
 
