@@ -65,7 +65,12 @@ class ConsoleRunner(Runner):
 
         params = {}
 
-        for argname, value in six.iteritems(vars(parser.parse_args(args))):
+        if len(args) == 0:
+            enumerated_arguments = {}
+        else:
+            enumerated_arguments = vars(parser.parse_args(args))
+
+        for argname, value in six.iteritems(enumerated_arguments):
             try:
                 v = value[0]
             except TypeError:
@@ -83,7 +88,7 @@ class ConsoleRunner(Runner):
 
         for console in self.consoles:
             if not first:
-                self.stdout.write('\n')
+                self.stdout.write(six.text_type('\n'))
             else:
                 first = True
 

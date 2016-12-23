@@ -24,14 +24,5 @@ class Command(object):
         ir = InlineRunner()
         return ir.run(self, *args, **kwargs)
 
-    def run_using_main(self, args=None):
-        """
-        To be called in if __name__ == '__main__' sections.
-        Uses sys.argv
-        """
-        from bunia.runner.console import _run_from_console
-        _run_from_console(self, args or sys.argv[1:])
-
-
 
 COMMAND = Command   # for autodiscovery
