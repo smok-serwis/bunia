@@ -1,6 +1,7 @@
 import importlib
 import inspect
 import pkgutil
+import six
 
 from bunia.api import Command
 
@@ -39,7 +40,9 @@ def pick_from_module(module, name):
 
 def from_module(module):
     """
-    Walk a module (+ imported submodules) and return  Command instances found
+    Walk a module (+ imported submodules) and return  Command instances found.
+
+    Does not return duplicates, even if found.
 
     :param module: module to examine
     :return: list of Command instances found
@@ -47,7 +50,7 @@ def from_module(module):
     # get all classes
     commands = []
     for name, member in inspect.getmembers(module):
-        if inspect.isclass(member) and issubclass(member, Command) and (member is not Command):
+        if inspect.isclass(member) and issubclass(member, Command) and (member is not Command) and (member not in commands):
             commands.append(member)
 
     # get submodules
@@ -60,4 +63,3 @@ def from_module(module):
         commands.extend(from_module(finder.find_module(modname).load_module(modname)))
 
     return commands
-
