@@ -8,10 +8,9 @@ python:
  - "pypy"
 cache: pip
 install:
- - if [[ $TRAVIS_PYTHON_VERSION == '3.2' ]]; then pip install 'coverage<3.4'; else pip install coverage; fi
- - pip install codeclimate-test-reporter
+ - pip install codeclimate-test-reporter coverage
  - pip install -r requirements.txt
 script:
- - nosetests --with-coverage
+ - if [[ $TRAVIS_PYTHON_VERSION == '3.2' ]]; then nosetests; else nosetests --with-coverage; fi
 after_success:
-  - CODECLIMATE_REPO_TOKEN=c9bb4362e87117de1c8e4ed83afad7b4068193d726e324a6280115c6dcde882b codeclimate-test-reporter
+  - if [[ $TRAVIS_PYTHON_VERSION != '3.2' ]]; then CODECLIMATE_REPO_TOKEN=c9bb4362e87117de1c8e4ed83afad7b4068193d726e324a6280115c6dcde882b codeclimate-test-reporter; fi
