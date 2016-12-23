@@ -3,7 +3,7 @@
 from setuptools import setup
 
 setup(name='bunia',
-      version='0.7-devel',
+      version='0.7',
       description='Write commands that use multiple interfaes',
       author='DMS Serwis s.c.',
       author_email='piotrm@smok.co',

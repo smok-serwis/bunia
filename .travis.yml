@@ -8,7 +8,7 @@ python:
  - "pypy"
 cache: pip
 install:
- - if [[ $TRAVIS_PYTHON_VERSION == '3.2' ]]; then pip install 'coverage<4.0.0'; else; pip install coverage fi
+ - if [[ $TRAVIS_PYTHON_VERSION == '3.2' ]]; then pip install 'coverage<4.0.0'; else pip install coverage fi
  - pip install codeclimate-test-reporter
  - pip install -r requirements.txt
 script:
