@@ -1,6 +1,6 @@
 import unittest
 
-from bunia.api import Argument, Integer, Float, Flag
+from bunia.api import Argument, Integer, Float, Flag, ChoiceArgument
 
 class TestArguments(unittest.TestCase):
 
@@ -11,6 +11,11 @@ class TestArguments(unittest.TestCase):
         self.assertEquals(arg.description, u'desc')
         self.assertEquals(arg.required, False)
         self.assertEquals(arg.default, 'wtf')
+
+    def test_choice(self):
+        arg = ChoiceArgument('test', [('1', 'one'), ('2', 'two')])
+        self.assertEquals(arg.clean('1'), '1')
+        self.assertRaises(ValueError, lambda: arg.clean('3'))
 
     def test_argument(self):
         arg = Argument('test')

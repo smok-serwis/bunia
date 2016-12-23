@@ -24,6 +24,7 @@ A device-independent output and input is presented.''',
       classifiers=[
           'Programming Language :: Python',
           'Programming Language :: Python :: 2.7',
+          'Programming Language :: Python :: 3.4',
           'Programming Language :: Python :: Implementation :: CPython',
           'Programming Language :: Python :: Implementation :: PyPy',
           'Operating System :: OS Independent'

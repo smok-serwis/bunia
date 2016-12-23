@@ -55,10 +55,10 @@ class ChoiceArgument(ListedArgument):
         return self.choices
 
     def clean(self, val):
-        if val not in (v for v, lab in self.choices):
-            raise ValueError(val)
-        return val
-
+        for v, lab in self.choices:
+            if val == v:
+                return val
+        raise ValueError(val)
 
 class Integer(Argument):
     """Argument is an integer"""
