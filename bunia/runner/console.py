@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding=UTF-8
 import sys
 import argparse
 from bunia.runner.base import Runner
@@ -80,7 +81,8 @@ class ConsoleRunner(Runner):
                 params[argname] = argument_by_name[argname].clean(v)
             except ValueError as e:
                 errmsg = e.args[0] if six.PY3 else e.message
-                raise ValueError('Invalid value of argument %s: %s' % (argname, errmsg))
+                raise ValueError('Invalid value of argument %s: %s' %
+                                 (argname, errmsg))
 
         cmd.run(self, **params)
 

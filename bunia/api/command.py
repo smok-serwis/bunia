@@ -1,5 +1,3 @@
-import sys
-
 class Command(object):
     """
     Base class for all StGeorge commands.

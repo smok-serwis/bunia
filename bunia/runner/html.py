@@ -1,10 +1,7 @@
-#!/usr/bin/env python
-import sys
-import argparse
+# coding=UTF-8
 from bunia.runner.base import Runner
 from bunia.api import ValuelessArgument
 from bunia.output import ConsoleOutput
-from bunia.discovery import from_name
 import io
 import six
 
