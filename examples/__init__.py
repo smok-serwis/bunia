@@ -1,1 +1,1 @@
-import sq
+import examples.sq

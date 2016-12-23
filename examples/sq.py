@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-#coding=UTF-8
+# coding=UTF-8
+from __future__ import print_function
 from bunia.api import Command, Argument, Flag, Integer, ChoiceArgument
 
 class AddTwo(Command):
@@ -12,7 +13,7 @@ class AddTwo(Command):
     ]
 
     def run(self, runner, n, wtf, sqrt=False):
-        print wtf
+        print(wtf)
         console = runner.new_console()
         if sqrt:
             import math

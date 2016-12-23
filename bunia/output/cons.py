@@ -4,7 +4,7 @@ from bunia.output.base import Output
 
 class ConsoleOutput(Output):
     """
-    UTF-8 output.
+    Returns a unicode
     """
     def __init__(self, name=None, eol=u'\n', stdout=None, sink=False):
         Output.__init__(self, name)
@@ -27,7 +27,7 @@ class ConsoleOutput(Output):
         self.io.write(self.eol)
 
     def to(self, form='text'):
-        content = self.io.getvalue().encode('utf8')
+        content = self.io.getvalue()
         self.io.close()
 
         if form == 'text':
