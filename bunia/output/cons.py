@@ -1,4 +1,5 @@
 import io
+import six
 
 from bunia.output.base import Output
 
@@ -9,7 +10,7 @@ class ConsoleOutput(Output):
     def __init__(self, name=None, eol=u'\n', stdout=None, sink=False):
         Output.__init__(self, name)
         self.io = stdout or io.StringIO()
-        self.eol = unicode(eol)
+        self.eol = six.text_type(eol)
         self.sink = sink
 
     def sink(self, sink=True):
@@ -23,7 +24,7 @@ class ConsoleOutput(Output):
         message % args. Appends an end of line"""
         if self.sink:
             return
-        self.io.write((unicode(message) % args))
+        self.io.write((six.text_type(message) % args))
         self.io.write(self.eol)
 
     def to(self, form='text'):

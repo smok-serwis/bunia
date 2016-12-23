@@ -6,6 +6,8 @@ from bunia.api import ValuelessArgument
 from bunia.output import ConsoleOutput
 from bunia.discovery import from_name
 import io
+import six
+
 
 class ConsoleRunner(Runner):
     """
@@ -59,7 +61,7 @@ class ConsoleRunner(Runner):
 
         params = {}
 
-        for argument_name, value in vars(parser.parse_args(args)).iteritems():
+        for argument_name, value in six.iteritems(vars(parser.parse_args(args))):
             try:
                 v = value[0]
             except TypeError:
@@ -84,7 +86,7 @@ class ConsoleRunner(Runner):
                 self.stdout.write(console.name)
                 self.stdout.write('----------------')
 
-            self.stdout.write(console.to('text').decode('utf8'))
+            self.stdout.write(console.to('text'))
 
 
 def _run_from_console(cmd, args):
