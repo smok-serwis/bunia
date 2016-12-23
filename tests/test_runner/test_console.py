@@ -3,9 +3,11 @@ from __future__ import absolute_import, division, print_function
 import unittest
 from threading import Lock, Thread
 import io
-
+import sys
+import imp
 
 from bunia.runner import ConsoleRunner
+from bunia.runner.console import _run_from_console
 from bunia.api import Command
 
 from tests.test_runner.commands import AddTwoNumbers, ConsoleClusterfuck
@@ -65,3 +67,31 @@ class TestConsole(unittest.TestCase):
         r.join()    # wait for command completion
         v += out.getvalue()
         self.assertTrue('world' in v)
+
+    def test_run_from_console(self):
+        out = io.StringIO()
+        stdout = sys.stdout
+        sys.stdout = out
+        _run_from_console(AddTwoNumbers(), ['2', '3'])
+        self.assertTrue('2+3=5' in out.getvalue())
+        sys.stdout = stdout
+
+    def test_run_as_command_pass(self):
+        a = sys.argv
+        sys.argv = [sys.argv[0], 'tests.test_runner.commands:AddTwoNumbers', '2', '3']
+        out = io.StringIO()
+        stdout = sys.stdout
+        sys.stdout = out
+        imp.load_source('__main__', 'bunia/runner/console.py')
+        sys.argv = a
+        self.assertTrue('2+3=5' in out.getvalue())
+        sys.stdout = stdout
+
+    def test_run_as_command_fail(self):
+        a = sys.argv
+        sys.argv = [sys.argv[0]]
+        try:
+            imp.load_source('__main__', 'bunia/runner/console.py')
+        except SystemExit as e:
+            self.assertEquals(e.code, 1)
+        sys.argv = a
