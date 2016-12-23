@@ -8,7 +8,7 @@ import io
 from bunia.runner import ConsoleRunner
 from bunia.api import Command
 
-from tests.test_runner.commands import AddTwoNumbers
+from tests.test_runner.commands import AddTwoNumbers, ConsoleClusterfuck
 
 class TestConsole(unittest.TestCase):
 
@@ -21,6 +21,14 @@ class TestConsole(unittest.TestCase):
         cr = ConsoleRunner()
         cr.run(AddTwoNumbers(), ['2', '3'], stdout=out)
         self.assertTrue('2+3=5' in out.getvalue())
+
+    def test_console_clusterfuck(self):
+        out = io.StringIO()
+        cr = ConsoleRunner()
+        cr.run(ConsoleClusterfuck(), ['2', '3'], stdout=out)
+        self.assertTrue('2+3=5' in out.getvalue())
+        self.assertTrue('2*3=6' in out.getvalue())
+        self.assertTrue('2-3=-1' in out.getvalue())
 
     def test_stdout_passthru(self):
         lock = Lock()

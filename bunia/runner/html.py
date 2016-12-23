@@ -34,7 +34,7 @@ class HTMLOutputBuilder(object):
         self.out.write(u'<h3>')
         self.out.write(output.name)
         self.out.write(u'</h3>')
-        self.out.write(_output_to_html(output))
+        self.out.write(u''.join(_output_to_html(output)))
         self.out.write(u'<br>')
 
     def to_html(self):
