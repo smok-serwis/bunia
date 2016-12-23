@@ -5,19 +5,17 @@ from bunia.output.base import Output
 
 class ConsoleOutput(Output):
     """
-    Returns a unicode
+    Returns a unicode.
+
+    You can silence and unsilence it by setting the .sink property to True/False.
+    True silences output.
     """
     def __init__(self, name=None, eol=u'\n', stdout=None, sink=False):
         Output.__init__(self, name)
         self.io = stdout or io.StringIO()
         self.eol = six.text_type(eol)
-        self.sink = sink
+        self.sink = sink    #: public, write to toggle sink
 
-    def sink(self, sink=True):
-        """
-        Make this console ignore all input.
-        """
-        self.sink = sink
 
     def text(self, message, *args):
         """Write a message. It will be subject to processing with
