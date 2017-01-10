@@ -1,3 +1,5 @@
+import warnings
+
 class Argument(object):
     """
     Definition of an argument
@@ -14,6 +16,9 @@ class Argument(object):
         self.name = name
         self.default = default
         self.required = required
+
+        if self.default is not None and self.required:
+            warnings.warn(u'If it is required, why provide a default value?')
 
     def clean(self, val):
         """

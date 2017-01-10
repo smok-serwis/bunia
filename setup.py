@@ -3,12 +3,12 @@
 from setuptools import setup
 
 setup(name='bunia',
-      version='0.8',
+      version='0.9',
       description='Write commands that use multiple interfaes',
       author='DMS Serwis s.c.',
       author_email='piotrm@smok.co',
       url='https://github.com/smok-serwis/bunia',
-      download_url='https://github.com/smok-serwis/bunia/archive/v0.8.zip',
+      download_url='https://github.com/smok-serwis/bunia/archive/v0.9.zip',
       keywords=['arguments', 'argparse', 'html', 'console'],
       platforms=['any'],
       packages=['bunia',
