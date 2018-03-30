@@ -1,6 +1,8 @@
 # coding=UTF-8
 from __future__ import absolute_import, division, print_function
 
+import random
+
 from bunia.api import Command, Integer
 
 
@@ -28,3 +30,14 @@ class ConsoleClusterfuck(Command):
 
         con3 = runner.new_console('con3')
         con.text('%s-%s=%s', a, b, a-b)
+
+
+class LoremIpsum(Command):
+    NAME = 'lorem_ipsum'
+    DESCRIPTION = 'Return few sentences of Lorem Ipsum'
+
+    def run(self, runner, **kwargs):
+        con = runner.new_console()
+        lipsum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel elit finibus, pharetra enim vel, accumsan urna.'
+
+        con.write(lipsum.encode('ascii'))
