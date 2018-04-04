@@ -7,6 +7,7 @@ class Command(object):
 
     NAME = 'command'
     DESCRIPTION = 'Does nothing.'
+    DOWNLOADABLE = False
     ARGUMENTS = [] # list of Argument instances
 
     def run(self, runner, **kwargs):
