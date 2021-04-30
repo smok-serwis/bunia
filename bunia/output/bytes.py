@@ -1,7 +1,7 @@
-import base64
+import tempfile
 from io import BytesIO
-
-from bunia.output.base import Output
+import mimetypes
+from bunia.output.base import Output, transcode_output
 
 
 class BytesOutput(Output):
@@ -21,11 +21,39 @@ class BytesOutput(Output):
         content = self.output.read()
         self.output.close()
 
-        if form == 'raw':
-            return content
-        if form == 'ascii':
-            return content.decode('ascii')
-        if form == 'base64':
-            return base64.b64encode(content)
+        return transcode_output(content, form)
 
-        raise SyntaxError('"%s" is not a valid format' % form)
+
+class NullOutput(Output):
+    def __init__(self):
+        super(NullOutput, self).__init__()
+        self.mimetype = None
+
+    def text(self, str_data):
+        pass
+
+    def write(self, byte_content):
+        pass
+
+    def to(self, form='text'):
+        return transcode_output(b'', form)
+
+
+class FileOutput(BytesOutput):
+    """
+    An output as a file
+
+    :ivar mimetype: (tp.Optional[str]) - mimetype or None if unavailable
+    """
+    def __init__(self, name, mimetype=None):
+        super(FileOutput, self).__init__(name)
+        self.file = open(name, 'wb')
+        self.mimetype = mimetype or mimetypes.guess_type(name)[0]
+
+    def write(self, byte_content):
+        super(FileOutput, self).write(byte_content)
+        self.file.write(byte_content)
+
+    def __del__(self):
+        self.file.close()
+

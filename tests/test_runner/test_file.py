@@ -21,7 +21,7 @@ class TestFile(unittest.TestCase):
         mime, content = fr.get_content('lorem.txt', 'base64')
 
         self.assertEqual(mime, 'text/plain')
-        self.assertEqual(content, b'TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gTmFtIHZlbCBlbGl0IGZpbmlidXMsIHBoYXJldHJhIGVuaW0gdmVsLCBhY2N1bXNhbiB1cm5hLg==')
+        self.assertEqual(content, 'TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4gTmFtIHZlbCBlbGl0IGZpbmlidXMsIHBoYXJldHJhIGVuaW0gdmVsLCBhY2N1bXNhbiB1cm5hLg==')
 
     def test_should_return_ascii(self):
         fr = FileRunner()

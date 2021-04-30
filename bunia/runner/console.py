@@ -4,7 +4,7 @@ import sys
 import argparse
 from bunia.runner.base import Runner
 from bunia.api import ValuelessArgument
-from bunia.output import ConsoleOutput
+from bunia.output import ConsoleOutput, FileOutput
 from bunia.discovery import from_name
 import io
 import six
@@ -25,6 +25,9 @@ class ConsoleRunner(Runner):
         con = ConsoleOutput(name)
         self.consoles.append(con)
         return con
+
+    def new_file(self, filename=None, mimetype=None):
+        return FileOutput(filename, mimetype)
 
     def run(self, cmd, args, stdout=None):
         """

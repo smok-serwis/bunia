@@ -2,7 +2,7 @@
 from __future__ import absolute_import, division, print_function
 import unittest
 
-from bunia.output import ConsoleOutput
+from bunia.output import ConsoleOutput, NullOutput
 
 
 class TestConsoleOutput(unittest.TestCase):
@@ -12,21 +12,6 @@ class TestConsoleOutput(unittest.TestCase):
         self.assertRaises(ValueError, lambda: c.to('nonexistant form'))
 
     def test_sink(self):
-        c = ConsoleOutput(sink=True)
-        self.assertTrue(c.sink)
-
-        c = ConsoleOutput(sink=True)
-        self.assertTrue(c.sink)
+        c = NullOutput()
         c.text('hello')
         self.assertEquals(c.to('text'), '')
-
-        c = ConsoleOutput()
-        c.sink = True
-        c.text('hello')
-        self.assertEquals(c.to('text'), '')
-
-        c = ConsoleOutput(sink=True)
-        c.text('world')
-        c.sink = False
-        c.text('hello')
-        self.assertTrue('hello' in c.to('text'))

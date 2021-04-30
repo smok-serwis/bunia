@@ -3,9 +3,10 @@ import sys
 import argparse
 from bunia.runner.base import Runner
 from bunia.api import ValuelessArgument
-from bunia.output import ConsoleOutput
+from bunia.output import ConsoleOutput, NullOutput
 from bunia.discovery import from_name
 import io
+
 
 class InlineRunner(Runner):
     """
@@ -18,8 +19,13 @@ class InlineRunner(Runner):
 
     """
 
+    def new_file(self, filename=None, mimetype=None):
+        no = NullOutput()
+        no.mimetype = mimetype
+        return no
+
     def new_console(self, name=None, sink=False):
-        return ConsoleOutput(sink=True)
+        return NullOutput()
 
     def run(self, cmd, *args, **kwargs):
         """
